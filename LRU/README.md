@@ -36,7 +36,7 @@ proc_max: 10  proc_size_max: 1048576
 ------------------------------
 Number of process: 2
 2 process created
-0 page allocated
+241 page allocated
 Access orders allocated
 ------------------------------
 PID: 0  size: 397548  n_page: 98

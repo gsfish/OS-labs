@@ -51,9 +51,9 @@ void print_proc(PROC *proc_list);
 // print contents in RS for each process
 void print_rss(int pid);
 // allocate pages for each process based on the size in proc_list
-void alloc_page(PROC *proc_list);
+int alloc_page(PROC *proc_list);
 // create random access orders
-void alloc_order(PROC *proc_list);
+int alloc_order(PROC *proc_list);
 // simulate LRU memory allocation algorithm
 int LRU(PROC *proc);
 // get the original page of process for specified page order
@@ -61,13 +61,14 @@ PAGE *get_order_page(PROC *proc, PAGE_ORDER *order);
 // get the index of order in RS, return -1 if not match
 int get_order_rs(PAGE *rss[], PAGE_ORDER *order);
 // get the oldest page in RS (based on VMEM.last_order[index])
-int get_oldest_rss(int pid);
+int get_oldest_rs(int pid);
 // simulate the whole progress of virtual memory management
 void simulate(PROC *proc_list);
 
 
 static int pid_used = 0;
 static int page_used = 0;
+static int order_used = 0;
 static VMEM memory[PROC_MAX] = {0};
 
 #endif

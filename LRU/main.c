@@ -6,6 +6,8 @@
 int main()
 {
     int num;
+    int page_used;
+    int order_used;
     PROC *proc_list;
 
     printf("Simulation for Memory Management\n");
@@ -30,10 +32,10 @@ int main()
         exit(1);
     }
     printf("%d process created\n", num);
-    alloc_page(proc_list);
+    page_used = alloc_page(proc_list);
     printf("%d page allocated\n", page_used);
-    alloc_order(proc_list);
-    printf("Access orders allocated\n");
+    order_used = alloc_order(proc_list);
+    printf("%d orders allocated\n", order_used);
 
     printf("------------------------------\n");
     print_proc(proc_list);

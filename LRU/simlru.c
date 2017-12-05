@@ -82,7 +82,7 @@ void print_rss(int pid)
 }
 
 
-void alloc_page(PROC *head)
+int alloc_page(PROC *head)
 {
     int i;
     int size;
@@ -111,10 +111,11 @@ void alloc_page(PROC *head)
         head->i_page = page_head;
         head = head->next;
     }
+    return page_used;
 }
 
 
-void alloc_order(PROC *head)
+int alloc_order(PROC *head)
 {
     int i;
     int n_order;
@@ -133,9 +134,11 @@ void alloc_order(PROC *head)
         q->next = NULL;
         free(p);
 
+        order_used += n_order;
         head->order = order_head;
         head = head->next;
     }
+    return order_used;
 }
 
 
@@ -169,7 +172,7 @@ int get_order_rs(PAGE *RS[], PAGE_ORDER *order)
 }
 
 
-int get_oldest_rss(int pid)
+int get_oldest_rs(int pid)
 {
     int i;
     int res = 0;
@@ -209,7 +212,7 @@ int LRU(PROC *proc)
 
     // page fault
     else {
-        index = get_oldest_rss(pid);
+        index = get_oldest_rs(pid);
         ++order_rec[pid];
         memory[pid].pages[index] = page;
         memory[pid].last_order[index] = order_rec[pid];
